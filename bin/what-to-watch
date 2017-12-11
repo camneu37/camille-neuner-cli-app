@@ -2,3 +2,7 @@
 
 
 require_relative '../lib/what_to_watch'
+
+new_list = WhatToWatch::Scraper.new.scrape_series_list
+new_details = WhatToWatch::Scraper.new.scrape_show_details("http://www.sho.com/white-famous")
+binding.pry
