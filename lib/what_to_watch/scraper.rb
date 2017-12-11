@@ -10,4 +10,13 @@ class WhatToWatch::Scraper
     all_shows
   end
 
+  def scrape_show_details(link)
+    doc = Nokogiri::HTML(open(link))
+    show_details = {}
+    show_details[:about] = doc.css("p.block-container__copy").text
+    show_details[:airs] = doc.css("div.ways-to-watch__section p.ways-to-watch__date_time").text
+    show_details[:episodes] = doc.css("section.section--large h3.section-header").text
+  end
+
+
 end
