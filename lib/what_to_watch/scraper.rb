@@ -5,7 +5,7 @@ class WhatToWatch::Scraper
     shows = doc.css("li.promo")
     all_shows = []
     shows.each do |show|
-      all_shows << show.css("a.promo__link").text
+      all_shows << show.css("a.promo__link").text.upcase
     end
     all_shows
   end
