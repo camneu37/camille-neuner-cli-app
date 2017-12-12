@@ -11,7 +11,6 @@ class WhatToWatch::Scraper
       all_shows << show_hash
     end
     all_shows
-    binding.pry
   end
 
   def scrape_show_details(link)

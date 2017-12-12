@@ -1,15 +1,13 @@
 class WhatToWatch::Shows
-  attr_accessor :name, :about, :airs, :episodes
+  attr_accessor :name, :about, :airs, :episodes, :link
   @@all = []
 
-  def initialize(name)
-    @name = name
+  def initialize
     @@all << self
-    add_show_attributes
   end
 
   def add_show_attributes
-    show_link = "http://www.sho.com/#{self.name.downcase.gsub(" ", "-")}"
+    show_link = "http://www.sho.com/#{self.link}"
     show = WhatToWatch::Scraper.new.scrape_show_details(show_link)
     @about = show[:about]
     @airs = show[:airs]
@@ -18,7 +16,10 @@ class WhatToWatch::Shows
 
   def self.create_from_list
     series_list.each do |show|
-      WhatToWatch::Shows.new(show)
+      new_show = WhatToWatch::Shows.new
+      new_show.name = show[:name]
+      new_show.link = show[:link]
+      new_show.add_show_attributes
     end
     binding.pry
   end

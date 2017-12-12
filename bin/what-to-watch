@@ -2,3 +2,5 @@
 
 
 require_relative '../lib/what_to_watch'
+
+WhatToWatch::Shows.create_from_list
