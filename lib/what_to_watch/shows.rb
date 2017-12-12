@@ -14,12 +14,21 @@ class WhatToWatch::Shows
     @episodes = show[:episodes]
   end
 
+  def self.find_by_name(name)
+    WhatToWatch::Shows.all.detect do |show|
+      show.name == name
+    end
+  end
+
   def self.create_from_list
     series_list.each do |show|
-      new_show = WhatToWatch::Shows.new
-      new_show.name = show[:name]
-      new_show.link = show[:link]
-      new_show.add_show_attributes
+      name = show[:name]
+      if find_by_name(name) == nil
+        new_show = WhatToWatch::Shows.new
+        new_show.name = show[:name]
+        new_show.link = show[:link]
+        new_show.add_show_attributes
+      end
     end
     binding.pry
   end
