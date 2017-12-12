@@ -30,7 +30,6 @@ class WhatToWatch::Shows
         new_show.add_show_attributes
       end
     end
-    binding.pry
   end
 
   #def self.list_all
