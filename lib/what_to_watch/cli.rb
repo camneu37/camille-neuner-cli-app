@@ -1,7 +1,7 @@
 class WhatToWatch::CLI
 
   def list_all_shows
-    WhatToWatch::Shows.all.sort_by{|s| s.name}.each.with_index(1) do |show, i|
+    WhatToWatch::Shows.sorted_shows.each.with_index(1) do |show, i|
       puts "#{i}. #{show.name}"
     end
   end
@@ -28,7 +28,12 @@ class WhatToWatch::CLI
     list_all_shows
     puts "Please enter the number of the show for which you'd like more information."
     input = gets.strip.to_i
-    end
+    index = input - 1
+    show = WhatToWatch::Shows.find_by_index(index)
+    show_series_details(show)
+    puts " "
+    puts "Would you like to see information for another show?"
+    puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
   end
 
 end

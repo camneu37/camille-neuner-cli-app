@@ -20,6 +20,14 @@ class WhatToWatch::Shows
     end
   end
 
+  def self.find_by_index(index)
+    sorted_shows[index]
+  end
+
+  def self.sorted_shows
+    all.sort_by{|s| s.name}
+  end
+
   def self.create_from_list
     series_list.each do |show|
       name = show[:name]
