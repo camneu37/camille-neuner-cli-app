@@ -5,9 +5,13 @@ class WhatToWatch::Scraper
     shows = doc.css("li.promo")
     all_shows = []
     shows.each do |show|
-      all_shows << show.css("a.promo__link").text.upcase
+      show_hash = {}
+      show_hash[:name] = show.css("a.promo__link").text.upcase
+      show_hash[:link] = show.css("a.promo__link").attribute("href").value
+      all_shows << show_hash
     end
     all_shows
+    binding.pry
   end
 
   def scrape_show_details(link)
