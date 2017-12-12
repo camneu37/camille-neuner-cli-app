@@ -1,12 +1,12 @@
 class WhatToWatch::CLI
 
-  def self.list_all_shows
+  def list_all_shows
     WhatToWatch::Shows.all.sort_by{|s| s.name}.each.with_index(1) do |show, i|
       puts "#{i}. #{show.name}"
     end
   end
 
-  def self.show_series_details(show)
+  def show_series_details(show)
     puts "----------#{show.name}----------"
     puts "About the show: "
     puts " "
@@ -21,7 +21,7 @@ class WhatToWatch::CLI
     end
   end
 
-  def self.start
+  def start
     WhatToWatch::Shows.create_from_list
     puts "Welcome to What to Watch!"
     puts "Below you'll see a list of all available series from Showtime."
