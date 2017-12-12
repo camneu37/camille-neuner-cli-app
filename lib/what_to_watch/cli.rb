@@ -7,17 +7,17 @@ class WhatToWatch::CLI
   end
 
   def self.show_series_details(show)
-    puts " "
-    puts "#{show.name}"
-    puts " "
+    puts "----------#{show.name}----------"
     puts "About the show: "
     puts " "
     puts "#{show.about}"
     puts " "
-    puts "There are #{show.episodes} available to stream on Showtime Anytime"
+    puts "There are #{show.episodes} available to stream on Showtime Anytime."
     puts " "
     if show.airs != "No airings currently scheduled"
-      puts "This show will air on Showtime's channel #{show.airs}"
+      puts "This show will air on Showtime's channel #{show.airs}."
+    else
+      puts "There are no airings currently scheduled."
     end
   end
 
