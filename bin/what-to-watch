@@ -3,5 +3,4 @@
 
 require_relative '../lib/what_to_watch'
 
-WhatToWatch::Shows.create_from_list
-WhatToWatch::CLI.list_all_shows
+WhatToWatch::CLI.start
