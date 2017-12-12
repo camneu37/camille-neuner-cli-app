@@ -33,11 +33,11 @@ class WhatToWatch::Shows
     binding.pry
   end
 
-  def self.list_all
-    series_list.uniq.sort.each.with_index(1) do |show, i|
-      puts "#{i}. #{show}"
-    end
-  end
+  #def self.list_all
+  #  series_list.uniq.sort.each.with_index(1) do |show, i|
+  #    puts "#{i}. #{show}"
+  #  end
+  #end
 
   def self.series_list
     WhatToWatch::Scraper.new.scrape_series_list
