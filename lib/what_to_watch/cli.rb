@@ -24,10 +24,25 @@ class WhatToWatch::CLI
   def start
     WhatToWatch::Shows.create_from_list
     puts "Welcome to What to Watch!"
-    puts "Below you'll see a list of all available series from Showtime."
-    list_all_shows
-    puts "Please enter the number of the show for which you'd like more information."
-    input = gets.strip.to_i
+    puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
+    puts "Please enter '1' if you'd like to see the series starting with a number or the letters A-F."
+    puts "Please enter '2' if you'd like to see the series starting with the letters G-M."
+    puts "Please enter '3' if you'd like to see the series starting with the letters N-Z."
+    input = gets.strip
+    if input == "1"
+        list_num_to_f
+    elsif input == "2"
+        list_g_to_m
+    elsif input == "3"
+        list_n_to_z
+    else
+      puts "Entry invalid. Please try again."
+    end
+
+    puts "Would you like to see further details for any of these shows?"
+    puts "If you'd like to see further details for one of these shows, please enter the number of the show."
+    puts "Otherwise, enter 'more' if you'd like to see more show options."
+    input = gets.strip
     index = input - 1
     show = WhatToWatch::Shows.find_by_index(index)
     show_series_details(show)
