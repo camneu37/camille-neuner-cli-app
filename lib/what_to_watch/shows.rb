@@ -41,7 +41,7 @@ class WhatToWatch::Shows
   end
 
   def self.list_all
-    series_list.uniq.sort.each.with_index(1) do |show, i|
+    sorted_shows.each.with_index(1) do |show, i|
       puts "#{i}. #{show}"
     end
   end
