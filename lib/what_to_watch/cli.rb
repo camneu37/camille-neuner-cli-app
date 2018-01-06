@@ -25,13 +25,13 @@ class WhatToWatch::CLI
     puts "Please enter '4' if you'd like to see the series starting with numerals."
     input = gets.strip
     if input == "1"
-      list_a_to_f
+      WhatToWatch::Shows.list_a_to_f
     elsif input == "2"
-      list_g_to_m
+      WhatToWatch::Shows.list_g_to_m
     elsif input == "3"
-      list_n_to_z
+      WhatToWatch::Shows.list_n_to_z
     elsif input == "4"
-      list_num
+      WhatToWatch::Shows.list_num
     else
       puts "Entry invalid. Please try again."
     end
