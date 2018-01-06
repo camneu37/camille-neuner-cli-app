@@ -1,11 +1,5 @@
 class WhatToWatch::CLI
 
-  def list_all_shows
-    WhatToWatch::Shows.sorted_shows.each.with_index(1) do |show, i|
-      puts "#{i}. #{show.name}"
-    end
-  end
-
   def show_series_details(show)
     puts "----------#{show.name}----------"
     puts "About the show: "
@@ -38,7 +32,6 @@ class WhatToWatch::CLI
     else
       puts "Entry invalid. Please try again."
     end
-
     puts "Would you like to see further details for any of these shows?"
     puts "If you'd like to see further details for one of these shows, please enter the number of the show."
     puts "Otherwise, enter 'more' if you'd like to see more show options."
