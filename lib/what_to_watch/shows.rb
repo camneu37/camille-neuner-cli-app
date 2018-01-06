@@ -54,6 +54,14 @@ class WhatToWatch::Shows
     end
   end
 
+  def self.list_a_to_f
+    sorted_shows.each.with_index(1) do |show, i|
+      if show.name.start_with?("A", "B", "C", "D", "E", "F")
+        puts "#{i}. #{show}"
+      end
+    end
+  end
+
   def self.series_list
     WhatToWatch::Scraper.new.scrape_series_list
   end
