@@ -3,7 +3,7 @@ class WhatToWatch::CLI
   def start
     WhatToWatch::Shows.create_from_list
     puts " "
-    puts "------------------------------------------------------------"
+    puts "-------------------------------------------------------------------------------------------------------"
     puts "Welcome to What to Watch!"
     show_list_intro
     input = gets.strip
@@ -19,12 +19,13 @@ class WhatToWatch::CLI
     puts "If you'd like to see the series starting with the letters J-R, please type in '2' and press enter."
     puts "If you'd like to see the series starting with the letters S-Z, please type in '3' and press enter."
     puts "If you'd like to see the series starting with numerals, please type in '4' and press enter."
-    puts "------------------------------------------------------------"
+    puts "If at any time you'd like to exit the program, please type in 'exit' and press enter."
+    puts "-------------------------------------------------------------------------------------------------------"
     puts " "
   end
 
   def show_list(input)
-    until input == "1" || input == "2" || input == "3" || input == "4"
+    until input == "1" || input == "2" || input == "3" || input == "4" || "exit"
       invalid
     end
     if input == "1"
@@ -35,6 +36,9 @@ class WhatToWatch::CLI
       WhatToWatch::Shows.list_shows("STUVWXYZ")
     elsif input == "4"
       WhatToWatch::Shows.list_shows("1234567890")
+    elsif input == "exit"
+      puts " "
+      puts "Thank you for using What To Watch. Have a nice day!"
     end
   end
 
@@ -47,11 +51,14 @@ class WhatToWatch::CLI
     puts "If you'd like to see further details for one of the listed shows, please type in the number of the show and press enter."
     puts "If you'd like to see more show options, please type in 'more' and press enter."
     puts "If you'd like to exit the program, please type in 'exit' and press enter."
-    puts "------------------------------------------------------------"
+    puts "-------------------------------------------------------------------------------------------------------"
     puts " "
   end
 
   def do_more(input)
+    if input.to_i
+      input = input.to_i
+    end
     until input.integer? || input == "more" || input == "exit"
       invalid
     end
@@ -66,7 +73,6 @@ class WhatToWatch::CLI
       show_list_intro
       input = gets.strip
       show_list(input)
-    end
     elsif input == "exit"
       puts " "
       puts "Thank you for using What To Watch. Have a nice day!"
@@ -74,6 +80,7 @@ class WhatToWatch::CLI
   end
 
   def show_series_details(show)
+    puts "-------------------------------------------------------------------------------------------------------"
     puts " "
     puts "----------#{show.name}----------"
     puts "About the show: "
@@ -82,12 +89,7 @@ class WhatToWatch::CLI
     puts " "
     puts "There are #{show.episodes} available to stream on Showtime Anytime."
     puts " "
-    if show.airs != "No airings currently scheduled"
-      puts "This show will air on Showtime's channel #{show.airs}."
-    else
-      puts "There are no airings currently scheduled."
-    end
-    puts "------------------------------------------------------------"
+    puts "-------------------------------------------------------------------------------------------------------"
     puts " "
   end
 
