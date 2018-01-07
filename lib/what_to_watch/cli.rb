@@ -23,13 +23,7 @@ class WhatToWatch::CLI
     puts " "
     puts "------------------------------------------------------------"
     puts "Welcome to What to Watch!"
-    puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
-    puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
-    puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
-    puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
-    puts "Please enter '4' if you'd like to see the series starting with numerals."
-    puts "------------------------------------------------------------"
-    puts " "
+    show_list_intro
     input = gets.strip
     show_list(input)
     puts "Would you like to see further details for any of these shows?"
@@ -62,6 +56,16 @@ class WhatToWatch::CLI
     elsif input == "4"
       WhatToWatch::Shows.list_shows("1234567890")
     end
+  end
+
+  def show_list_intro
+    puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
+    puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
+    puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
+    puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
+    puts "Please enter '4' if you'd like to see the series starting with numerals."
+    puts "------------------------------------------------------------"
+    puts " "
   end
 
 end
