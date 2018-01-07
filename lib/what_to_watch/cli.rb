@@ -8,11 +8,7 @@ class WhatToWatch::CLI
     show_list_intro
     input = gets.strip
     show_list(input)
-    puts "Would you like to see further details for any of these shows?"
-    puts "If you'd like to see further details for one of these shows, please enter the number of the show."
-    puts "Otherwise, enter 'more' if you'd like to see more show options."
-    puts "------------------------------------------------------------"
-    puts " "
+    ask_for_more
     input = gets.strip
     if input.integer?
       index = input - 1
@@ -48,6 +44,14 @@ class WhatToWatch::CLI
     elsif input == "4"
       WhatToWatch::Shows.list_shows("1234567890")
     end
+  end
+
+  def ask_for_more
+    puts "If you'd like to see further details for one of these shows, please type in the number of the show and press enter."
+    puts "If you'd like to see more show options, please type in 'more' and press enter."
+    puts "If you'd like to exit the program, please type in 'exit' and press enter."
+    puts "------------------------------------------------------------"
+    puts " "
   end
 
   def show_series_details(show)
