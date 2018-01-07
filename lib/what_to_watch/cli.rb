@@ -25,8 +25,9 @@ class WhatToWatch::CLI
   end
 
   def show_list(input)
-    until input == "1" || input == "2" || input == "3" || input == "4" || "exit"
+    while input != "1" && input != "2" && input != "3" && input != "4" && input != "exit"
       invalid
+      input = gets.strip
     end
     if input == "1"
       WhatToWatch::Shows.list_shows("ABCDEFGHI")
@@ -43,11 +44,6 @@ class WhatToWatch::CLI
     end
   end
 
-  def invalid
-    puts "Entry invalid. Please try again."
-    input = gets.strip
-  end
-
   def ask_for_more
     puts "If you'd like to see further details for one of the listed shows, please type in the number of the show and press enter."
     puts "If you'd like to see more show options, please type in 'more' and press enter."
@@ -60,12 +56,13 @@ class WhatToWatch::CLI
     if input.to_i
       input = input.to_i
     else
-      input
+      input = input
     end
-    until input.integer? || input == "more" || input == "exit"
+    while !input.to_i && input != "more" && input != "exit"
       invalid
+      input = gets.strip
     end
-    if input.integer?
+    if input.to_i
       index = input - 1
       show = WhatToWatch::Shows.find_by_index(index)
       show_series_details(show)
@@ -81,6 +78,12 @@ class WhatToWatch::CLI
       puts "Thank you for using What To Watch. Have a nice day!"
       exit
     end
+  end
+
+  def invalid
+    puts " "
+    puts "Entry invalid. Please try again."
+    puts " "
   end
 
   def show_series_details(show)
