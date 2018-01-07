@@ -76,6 +76,9 @@ class WhatToWatch::CLI
       ask_for_more
       input = gets.strip.downcase
       do_more(input)
+    else
+      invalid
+      input = gets.strip.downcase
     end
   end
 
