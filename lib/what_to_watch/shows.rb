@@ -45,7 +45,11 @@ class WhatToWatch::Shows
     lp.each do |letter|
       sorted_shows.each.with_index(1) do |show, i|
         if show.name.start_with?(letter)
+          puts " "
+          puts "------------------------------------------------------------"
           puts "#{i}. #{show.name}"
+          puts "------------------------------------------------------------"
+          puts " "
         end
       end
     end
