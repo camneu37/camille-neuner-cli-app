@@ -6,16 +6,12 @@ class WhatToWatch::CLI
     puts "------------------------------------------------------------"
     puts "Welcome to What to Watch!"
     show_list_intro
+    input = gets.strip
     show_list(input)
     ask_for_more
     input = gets.strip
-    if input.integer?
-      index = input - 1
-      show = WhatToWatch::Shows.find_by_index(index)
-      show_series_details(show)
-    elsif input == "more"
-      show_list_intro
-    end
+    do_more(input)
+
     puts " "
     puts "Would you like to see information for another show?"
     puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
@@ -29,13 +25,11 @@ class WhatToWatch::CLI
     puts "If you'd like to see the series starting with numerals, please type in '4' and press enter."
     puts "------------------------------------------------------------"
     puts " "
-    input = gets.strip
   end
 
   def show_list(input)
     until input == "1" || input == "2" || input == "3" || input == "4"
-      puts "Entry invalid. Please try again."
-      input = gets.strip
+      invalid
     end
     if input == "1"
       WhatToWatch::Shows.list_shows("ABCDEFGHI")
@@ -48,12 +42,36 @@ class WhatToWatch::CLI
     end
   end
 
+  def invalid
+    puts "Entry invalid. Please try again."
+    input = gets.strip
+  end
+
   def ask_for_more
     puts "If you'd like to see further details for one of these shows, please type in the number of the show and press enter."
     puts "If you'd like to see more show options, please type in 'more' and press enter."
     puts "If you'd like to exit the program, please type in 'exit' and press enter."
     puts "------------------------------------------------------------"
     puts " "
+  end
+
+  def do_more(input)
+    until input.integer? || input == "more" || input == "exit"
+      invalid
+    end
+    if input.integer?
+      index = input - 1
+      show = WhatToWatch::Shows.find_by_index(index)
+      show_series_details(show)
+    elsif input == "more"
+      show_list_intro
+      input = gets.strip
+      show_list(input)
+    end
+    elsif input == "exit"
+      puts " "
+      puts "Thank you for using What To Watch. Have a nice day!"
+    end
   end
 
   def show_series_details(show)
