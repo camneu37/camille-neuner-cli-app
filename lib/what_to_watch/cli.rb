@@ -19,19 +19,19 @@ class WhatToWatch::CLI
     WhatToWatch::Shows.create_from_list
     puts "Welcome to What to Watch!"
     puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
-    puts "Please enter '1' if you'd like to see the series starting with the letters A-F."
-    puts "Please enter '2' if you'd like to see the series starting with the letters G-M."
-    puts "Please enter '3' if you'd like to see the series starting with the letters N-Z."
+    puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
+    puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
+    puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
     puts "Please enter '4' if you'd like to see the series starting with numerals."
     input = gets.strip
     if input == "1"
-      WhatToWatch::Shows.list_a_to_f
+      WhatToWatch::Shows.list_shows("ABCDEFGHI")
     elsif input == "2"
-      WhatToWatch::Shows.list_g_to_m
+      WhatToWatch::Shows.list_shows("JKLMNOPQR")
     elsif input == "3"
-      WhatToWatch::Shows.list_n_to_z
+      WhatToWatch::Shows.list_shows("STUVWXYZ")
     elsif input == "4"
-      WhatToWatch::Shows.list_num
+      WhatToWatch::Shows.list_shows("1234567890")
     else
       puts "Entry invalid. Please try again."
     end

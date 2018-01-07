@@ -40,24 +40,13 @@ class WhatToWatch::Shows
     end
   end
 
-  def self.list_all
-    sorted_shows.each.with_index(1) do |show, i|
-      puts "#{i}. #{show.name}"
-    end
-  end
-
-  def self.list_num
-    sorted_shows.each.with_index(1) do |show, i|
-      if show.name.start_with?("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-        puts "#{i}. #{show.name}"
-      end
-    end
-  end
-
-  def self.list_a_to_f
-    sorted_shows.each.with_index(1) do |show, i|
-      if show.name.start_with?("A", "B", "C", "D", "E", "F")
-        puts "#{i}. #{show.name}"
+  def self.list_shows(params)
+    lp = params.split(//)
+    lp.each do |letter|
+      sorted_shows.each.with_index(1) do |show, i|
+        if show.name.start_with?(letter)
+          puts "#{i}. #{show.name}"
+        end
       end
     end
   end
