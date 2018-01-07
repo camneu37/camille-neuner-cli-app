@@ -60,6 +60,10 @@ class WhatToWatch::CLI
 
   #issue with this method - only works when the user enters a number - if user enters more or exit, the program just defaults to the last show in the full list? it wont even handle the invalid entries properly
   def do_more(input)
+    while input != "more" && input != "exit" && input.to_i == 0
+      invalid
+      input = gets.strip.downcase
+    end
     if input == "more"
       show_list_intro
       input = gets.strip.downcase
@@ -68,17 +72,11 @@ class WhatToWatch::CLI
       puts " "
       puts "Thank you for using What To Watch. Have a nice day!"
       exit
-    elsif input.to_i
+    elsif input.to_i != 0
       input = input.to_i
       index = input - 1
       show = WhatToWatch::Shows.find_by_index(index)
       show_series_details(show)
-      ask_for_more
-      input = gets.strip.downcase
-      do_more(input)
-    else
-      invalid
-      input = gets.strip.downcase
     end
   end
 
