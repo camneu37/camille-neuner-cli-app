@@ -1,23 +1,5 @@
 class WhatToWatch::CLI
 
-  def show_series_details(show)
-    puts " "
-    puts "----------#{show.name}----------"
-    puts "About the show: "
-    puts " "
-    puts "#{show.about}"
-    puts " "
-    puts "There are #{show.episodes} available to stream on Showtime Anytime."
-    puts " "
-    if show.airs != "No airings currently scheduled"
-      puts "This show will air on Showtime's channel #{show.airs}."
-    else
-      puts "There are no airings currently scheduled."
-    end
-    puts "------------------------------------------------------------"
-    puts " "
-  end
-
   def start
     WhatToWatch::Shows.create_from_list
     puts " "
@@ -42,6 +24,16 @@ class WhatToWatch::CLI
     puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
   end
 
+  def show_list_intro
+    puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
+    puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
+    puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
+    puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
+    puts "Please enter '4' if you'd like to see the series starting with numerals."
+    puts "------------------------------------------------------------"
+    puts " "
+  end
+
   def show_list(input)
     until input == "1" || input == "2" || input == "3" || input == "4"
       puts "Entry invalid. Please try again."
@@ -58,12 +50,20 @@ class WhatToWatch::CLI
     end
   end
 
-  def show_list_intro
-    puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
-    puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
-    puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
-    puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
-    puts "Please enter '4' if you'd like to see the series starting with numerals."
+  def show_series_details(show)
+    puts " "
+    puts "----------#{show.name}----------"
+    puts "About the show: "
+    puts " "
+    puts "#{show.about}"
+    puts " "
+    puts "There are #{show.episodes} available to stream on Showtime Anytime."
+    puts " "
+    if show.airs != "No airings currently scheduled"
+      puts "This show will air on Showtime's channel #{show.airs}."
+    else
+      puts "There are no airings currently scheduled."
+    end
     puts "------------------------------------------------------------"
     puts " "
   end
