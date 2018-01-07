@@ -11,10 +11,6 @@ class WhatToWatch::CLI
     ask_for_more
     input = gets.strip
     do_more(input)
-
-    puts " "
-    puts "Would you like to see information for another show?"
-    puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
   end
 
   def show_list_intro
@@ -48,7 +44,7 @@ class WhatToWatch::CLI
   end
 
   def ask_for_more
-    puts "If you'd like to see further details for one of these shows, please type in the number of the show and press enter."
+    puts "If you'd like to see further details for one of the listed shows, please type in the number of the show and press enter."
     puts "If you'd like to see more show options, please type in 'more' and press enter."
     puts "If you'd like to exit the program, please type in 'exit' and press enter."
     puts "------------------------------------------------------------"
@@ -63,6 +59,9 @@ class WhatToWatch::CLI
       index = input - 1
       show = WhatToWatch::Shows.find_by_index(index)
       show_series_details(show)
+      ask_for_more
+      input = gets.strip
+      do_more(input)
     elsif input == "more"
       show_list_intro
       input = gets.strip
