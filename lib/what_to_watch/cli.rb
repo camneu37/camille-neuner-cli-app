@@ -31,6 +31,24 @@ class WhatToWatch::CLI
     puts "------------------------------------------------------------"
     puts " "
     input = gets.strip
+    show_list(input)
+    puts "Would you like to see further details for any of these shows?"
+    puts "If you'd like to see further details for one of these shows, please enter the number of the show."
+    puts "Otherwise, enter 'more' if you'd like to see more show options."
+    puts "------------------------------------------------------------"
+    puts " "
+    input = gets.strip
+    if input.integer?
+      index = input - 1
+      show = WhatToWatch::Shows.find_by_index(index)
+      show_series_details(show)
+    elsif input == "more"
+    puts " "
+    puts "Would you like to see information for another show?"
+    puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
+  end
+
+  def show_list(input)
     until input == "1" || input == "2" || input == "3" || input == "4"
       puts "Entry invalid. Please try again."
       input = gets.strip
@@ -44,18 +62,6 @@ class WhatToWatch::CLI
     elsif input == "4"
       WhatToWatch::Shows.list_shows("1234567890")
     end
-    puts "Would you like to see further details for any of these shows?"
-    puts "If you'd like to see further details for one of these shows, please enter the number of the show."
-    puts "Otherwise, enter 'more' if you'd like to see more show options."
-    puts "------------------------------------------------------------"
-    puts " "
-    input = gets.strip
-    index = input - 1
-    show = WhatToWatch::Shows.find_by_index(index)
-    show_series_details(show)
-    puts " "
-    puts "Would you like to see information for another show?"
-    puts "If yes, please enter the number of the show. Otherwise, please enter 'no'."
   end
 
 end
