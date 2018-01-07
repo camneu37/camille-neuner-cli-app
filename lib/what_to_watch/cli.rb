@@ -24,6 +24,10 @@ class WhatToWatch::CLI
     puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
     puts "Please enter '4' if you'd like to see the series starting with numerals."
     input = gets.strip
+    until input == "1" || input == "2" || input == "3" || input == "4"
+      puts "Entry invalid. Please try again."
+      input = gets.strip
+    end
     if input == "1"
       WhatToWatch::Shows.list_shows("ABCDEFGHI")
     elsif input == "2"
@@ -32,8 +36,6 @@ class WhatToWatch::CLI
       WhatToWatch::Shows.list_shows("STUVWXYZ")
     elsif input == "4"
       WhatToWatch::Shows.list_shows("1234567890")
-    else
-      puts "Entry invalid. Please try again."
     end
     puts "Would you like to see further details for any of these shows?"
     puts "If you'd like to see further details for one of these shows, please enter the number of the show."
