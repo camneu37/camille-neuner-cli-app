@@ -6,10 +6,10 @@ class WhatToWatch::CLI
     puts "-------------------------------------------------------------------------------------------------------"
     puts "Welcome to What to Watch!"
     show_list_intro
-    input = gets.strip
+    input = gets.strip.downcase
     show_list(input)
     ask_for_more
-    input = gets.strip
+    input = gets.strip.downcase
     do_more(input)
   end
 
@@ -27,7 +27,7 @@ class WhatToWatch::CLI
   def show_list(input)
     while input != "1" && input != "2" && input != "3" && input != "4" && input != "exit"
       invalid
-      input = gets.strip
+      input = gets.strip.downcase
     end
     if input == "1"
       WhatToWatch::Shows.list_shows("ABCDEFGHI")
@@ -60,18 +60,18 @@ class WhatToWatch::CLI
     end
     while !input.to_i && input != "more" && input != "exit"
       invalid
-      input = gets.strip
+      input = gets.strip.downcase
     end
     if input.to_i
       index = input - 1
       show = WhatToWatch::Shows.find_by_index(index)
       show_series_details(show)
       ask_for_more
-      input = gets.strip
+      input = gets.strip.downcase
       do_more(input)
     elsif input == "more"
       show_list_intro
-      input = gets.strip
+      input = gets.strip.downcase
       show_list(input)
     elsif input == "exit"
       puts " "
