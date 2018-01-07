@@ -59,6 +59,8 @@ class WhatToWatch::CLI
   def do_more(input)
     if input.to_i
       input = input.to_i
+    else
+      input
     end
     until input.integer? || input == "more" || input == "exit"
       invalid
