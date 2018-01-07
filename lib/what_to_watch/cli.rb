@@ -1,6 +1,7 @@
 class WhatToWatch::CLI
 
   def show_series_details(show)
+    puts " "
     puts "----------#{show.name}----------"
     puts "About the show: "
     puts " "
@@ -13,16 +14,22 @@ class WhatToWatch::CLI
     else
       puts "There are no airings currently scheduled."
     end
+    puts "------------------------------------------------------------"
+    puts " "
   end
 
   def start
     WhatToWatch::Shows.create_from_list
+    puts " "
+    puts "------------------------------------------------------------"
     puts "Welcome to What to Watch!"
     puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
     puts "Please enter '1' if you'd like to see the series starting with the letters A-I."
     puts "Please enter '2' if you'd like to see the series starting with the letters J-R."
     puts "Please enter '3' if you'd like to see the series starting with the letters S-Z."
     puts "Please enter '4' if you'd like to see the series starting with numerals."
+    puts "------------------------------------------------------------"
+    puts " "
     input = gets.strip
     until input == "1" || input == "2" || input == "3" || input == "4"
       puts "Entry invalid. Please try again."
@@ -40,6 +47,8 @@ class WhatToWatch::CLI
     puts "Would you like to see further details for any of these shows?"
     puts "If you'd like to see further details for one of these shows, please enter the number of the show."
     puts "Otherwise, enter 'more' if you'd like to see more show options."
+    puts "------------------------------------------------------------"
+    puts " "
     input = gets.strip
     index = input - 1
     show = WhatToWatch::Shows.find_by_index(index)
