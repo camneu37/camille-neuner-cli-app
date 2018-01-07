@@ -39,6 +39,7 @@ class WhatToWatch::CLI
     elsif input == "exit"
       puts " "
       puts "Thank you for using What To Watch. Have a nice day!"
+      exit
     end
   end
 
@@ -76,6 +77,7 @@ class WhatToWatch::CLI
     elsif input == "exit"
       puts " "
       puts "Thank you for using What To Watch. Have a nice day!"
+      exit
     end
   end
 
