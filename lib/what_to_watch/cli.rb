@@ -8,13 +8,16 @@ class WhatToWatch::CLI
     show_list_intro
     input = gets.strip.downcase
     show_list(input)
-    ask_for_more
-    input = gets.strip.downcase
-    do_more(input)
+    until input == "exit"
+      ask_for_more
+      input = gets.strip.downcase
+      do_more(input)
+    end
   end
 
   def show_list_intro
     puts " "
+    puts "-------------------------------------------------------------------------------------------------------"
     puts "Please follow the instructions below to see the lists of Showtime series available for streaming."
     puts "If you'd like to see the series starting with the letters A-I, please type in '1' and press enter."
     puts "If you'd like to see the series starting with the letters J-R, please type in '2' and press enter."
@@ -46,6 +49,7 @@ class WhatToWatch::CLI
   end
 
   def ask_for_more
+    puts "-------------------------------------------------------------------------------------------------------"
     puts "If you'd like to see further details for one of the listed shows, please type in the number of the show and press enter."
     puts "If you'd like to see more show options, please type in 'more' and press enter."
     puts "If you'd like to exit the program, please type in 'exit' and press enter."
