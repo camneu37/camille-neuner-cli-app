@@ -41,18 +41,18 @@ class WhatToWatch::Shows
   end
 
   def self.list_shows(params)
+    puts " "
+    puts "------------------------------------------------------------"
     lp = params.split(//)
     lp.each do |letter|
       sorted_shows.each.with_index(1) do |show, i|
         if show.name.start_with?(letter)
-          puts " "
-          puts "------------------------------------------------------------"
           puts "#{i}. #{show.name}"
-          puts "------------------------------------------------------------"
-          puts " "
         end
       end
     end
+    puts "------------------------------------------------------------"
+    puts " "
   end
 
   def self.series_list
