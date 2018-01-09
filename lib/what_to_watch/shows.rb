@@ -1,5 +1,5 @@
 class WhatToWatch::Shows
-  attr_accessor :name, :about, :airs, :episodes, :link
+  attr_accessor :name, :about, :episodes, :link
   @@all = []
 
   def initialize
@@ -10,7 +10,6 @@ class WhatToWatch::Shows
     show_link = "http://www.sho.com/#{self.link}"
     show = WhatToWatch::Scraper.new.scrape_show_details(show_link)
     @about = show[:about]
-    @airs = show[:airs]
     @episodes = show[:episodes]
   end
 
