@@ -57,8 +57,6 @@ class WhatToWatch::CLI
     puts " "
   end
 
-
-  #issue with this method - only works when the user enters a number - if user enters more or exit, the program just defaults to the last show in the full list? it wont even handle the invalid entries properly
   def do_more(input)
     while input != "more" && input != "exit" && input.to_i == 0
       invalid
