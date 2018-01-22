@@ -2,7 +2,9 @@ class WhatToWatch::Shows
   attr_accessor :name, :about, :episodes, :link
   @@all = []
 
-  def initialize
+  def initialize(name, link)
+    @name = name
+    @link = link
     @@all << self
   end
 
@@ -14,7 +16,7 @@ class WhatToWatch::Shows
   end
 
   def self.find_by_name(name)
-    WhatToWatch::Shows.all.detect do |show|
+    WhatToWatch::Shows.all.any? do |show|
       show.name == name
     end
   end
@@ -25,18 +27,6 @@ class WhatToWatch::Shows
 
   def self.sorted_shows
     all.sort_by{|s| s.name}
-  end
-
-  def self.create_from_list
-    series_list.each do |show|
-      name = show[:name]
-      if find_by_name(name) == nil
-        new_show = WhatToWatch::Shows.new
-        new_show.name = show[:name]
-        new_show.link = show[:link]
-        new_show.add_show_attributes
-      end
-    end
   end
 
   def self.list_shows(params)
@@ -52,10 +42,6 @@ class WhatToWatch::Shows
     end
     puts "-------------------------------------------------------------------------------------------------------"
     puts " "
-  end
-
-  def self.series_list
-    WhatToWatch::Scraper.new.scrape_series_list
   end
 
   def self.all

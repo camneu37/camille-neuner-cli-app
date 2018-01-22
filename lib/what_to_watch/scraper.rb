@@ -3,14 +3,13 @@ class WhatToWatch::Scraper
   def scrape_series_list
     doc = Nokogiri::HTML(open("http://www.sho.com/series"))
     shows = doc.css("li.promo")
-    all_shows = []
     shows.each do |show|
-      show_hash = {}
-      show_hash[:name] = show.css("a.promo__link").text.upcase
-      show_hash[:link] = show.css("a.promo__link").attribute("href").value
-      all_shows << show_hash
+      name = show.css("a.promo__link").text.upcase
+      link = show.css("a.promo__link").attribute("href").value
+      if WhatToWatch::Shows.find_by_name(name) == false
+        WhatToWatch::Shows.new(name, link).add_show_attributes
+      end
     end
-    all_shows
   end
 
   def scrape_show_details(link)

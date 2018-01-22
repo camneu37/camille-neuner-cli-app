@@ -1,7 +1,7 @@
 class WhatToWatch::CLI
 
   def start
-    WhatToWatch::Shows.create_from_list
+    WhatToWatch::Scraper.new.scrape_series_list
     puts " "
     puts "-------------------------------------------------------------------------------------------------------"
     puts "Welcome to What to Watch!"
